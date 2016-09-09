@@ -1,0 +1,63 @@
+#cloud-config
+
+merge_how: "dict(recurse_array)+list(append)"
+
+write_files:
+  - path: /etc/network/interfaces.d/maas.cfg
+    content: |
+      # guest-public VLAN
+      auto ens3.50
+      iface ens3.50 inet static
+        address 10.50.0.1
+        gateway 10.50.0.1
+        netmask 255.255.255.0
+        vlan-raw-device ens3
+
+      # guest-internal VLAN
+      auto ens3.100
+      iface ens3.100 inet static
+        address 10.100.0.1
+        gateway 10.100.0.1
+        netmask 255.255.255.0
+        vlan-raw-device ens3
+
+      # guest-admin VLAN
+      auto ens3.150
+      iface ens3.150 inet static
+        address 10.150.0.1
+        gateway 10.150.0.1
+        netmask 255.255.255.0
+        vlan-raw-device ens3
+
+      # guest-compute-data VLAN
+      auto ens3.200
+      iface ens3.200 inet static
+        address 10.200.0.1
+        gateway 10.200.0.1
+        netmask 255.255.255.0
+        vlan-raw-device ens3
+
+      # guest-storage-data VLAN
+      auto ens3.250
+      iface ens3.250 inet static
+        address 10.250.0.1
+        gateway 10.250.0.1
+        netmask 255.255.255.0
+        vlan-raw-device ens3
+
+      # guest-storage-cluster VLAN
+      auto ens3.30
+      iface ens3.30 inet static
+        address 10.30.0.1
+        gateway 10.30.0.1
+        netmask 255.255.255.0
+        vlan-raw-device ens3
+
+      # guest-compute-external VLAN (unmanaged)
+      auto ens3.99
+      iface ens3.99 inet static
+        address 10.99.0.1
+        gateway 10.99.0.1
+        netmask 255.255.255.0
+        vlan-raw-device ens3
+

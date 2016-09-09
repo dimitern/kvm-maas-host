@@ -1,0 +1,8 @@
+#cloud-config
+
+merge_type: 'list(append)+dict(recurse_array)+str()'
+
+runcmd:
+  - update-alternatives --set editor /usr/bin/vim.basic
+
+ssh_import_id: [frobware]

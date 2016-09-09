@@ -1,0 +1,56 @@
+# The internal network interface (maas-management network)
+auto ens4
+iface ens4 inet static
+	address 172.16.100.1
+	netmask 255.255.255.0
+	post-up iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source 192.168.118.2
+	post-down iptables -t nat -D POSTROUTING -o eth0 -j SNAT --to-source 192.168.118.2
+
+# guest-public VLAN
+auto ens4.50
+iface ens4.50 inet static
+	address 10.50.0.1
+	netmask 255.255.255.0
+	vlan-raw-device ens4
+
+# guest-internal VLAN
+auto ens4.100
+iface ens4.100 inet static
+	address 10.100.0.1
+	netmask 255.255.255.0
+	vlan-raw-device ens4
+
+# guest-admin VLAN
+auto ens4.150
+iface ens4.150 inet static
+	address 10.150.0.1
+	netmask 255.255.255.0
+	vlan-raw-device ens4
+
+# guest-compute-data VLAN
+auto ens4.200
+iface ens4.200 inet static
+	address 10.200.0.1
+	netmask 255.255.255.0
+	vlan-raw-device ens4
+
+# guest-storage-data VLAN
+auto ens4.250
+iface ens4.250 inet static
+	address 10.250.0.1
+	netmask 255.255.255.0
+	vlan-raw-device ens4
+
+# guest-storage-cluster VLAN
+auto ens4.30
+iface ens4.30 inet static
+	address 10.30.0.1
+	netmask 255.255.255.0
+	vlan-raw-device ens4
+
+# guest-compute-external VLAN (unmanaged)
+auto ens4.99
+iface ens4.99 inet static
+	address 10.99.0.1
+	netmask 255.255.255.0
+	vlan-raw-device ens4

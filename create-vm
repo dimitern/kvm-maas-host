@@ -1,0 +1,20 @@
+#!/bin/bash -eu
+
+name=$1
+net=$2
+
+virsh pool-refresh default
+virsh vol-clone --pool default ${CLOUD_IMG:-xenial-server-cloudimg-amd64-disk1.img} ${name}.img
+virsh vol-resize --pool default ${name}.img +50G
+virsh pool-refresh default
+
+virt-install -r 4096 \
+	     -n $name \
+	     --vcpus=1 \
+	     --autostart \
+	     --noautoconsole \
+	     --memballoon virtio \
+	     --boot hd \
+	     --disk vol=default/${name}.img,format=qcow2,bus=virtio,cache=writeback,size=${DISK_SIZE:-50} \
+	     --disk vol=default/${name}.iso,bus=virtio \
+	     --network network=maas20-net,model=virtio

@@ -1,0 +1,30 @@
+#cloud-config
+
+fdqn: maas20.home
+hostname: maas20.home
+local-hostname: maas20
+
+manage_etc_hosts: fqdn
+
+growpart:
+  mode: auto
+  devices: ['/']
+
+chpasswd:
+  list: |
+    root:root
+    ubuntu:password
+  expire: false
+
+ssh_pwauth: True
+disable_root: false
+
+apt_update: true
+apt_upgrade: true
+package_upgrade: true
+
+package_reboot_if_required: true
+
+power_state:
+  mode: reboot
+  condition: True

@@ -1,0 +1,16 @@
+#cloud-config
+
+merge_type: 'list(append)+dict(recurse_array)+str()'
+
+apt_sources:
+  - source: "ppa:maas/stable"
+
+packages:
+  - libvirt-bin
+  - maas-cli
+  - maas-dhcp
+  - maas-dns
+  
+# Waiting on a fix to do a complete MAAS install:
+#
+#  https://bugs.launchpad.net/ubuntu/+source/cloud-init/+bug/1576692
