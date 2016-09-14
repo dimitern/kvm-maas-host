@@ -17,4 +17,4 @@ virt-install -r 4096 \
 	     --boot hd \
 	     --disk vol=default/${name}.img,format=qcow2,bus=virtio,cache=writeback,size=${DISK_SIZE:-50} \
 	     --disk vol=default/${name}.iso,bus=virtio \
-	     --network network=maas20-net,model=virtio
+	     --network network=vmtest-net,model=virtio

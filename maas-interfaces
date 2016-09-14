@@ -3,8 +3,8 @@ auto ens4
 iface ens4 inet static
 	address 172.16.100.1
 	netmask 255.255.255.0
-	post-up iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source 192.168.118.2
-	post-down iptables -t nat -D POSTROUTING -o eth0 -j SNAT --to-source 192.168.118.2
+	post-up iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source 10.20.30.2
+	post-down iptables -t nat -D POSTROUTING -o eth0 -j SNAT --to-source 10.20.30.2
 
 # guest-public VLAN
 auto ens4.50

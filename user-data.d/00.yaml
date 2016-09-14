@@ -10,7 +10,7 @@ packages:
 write_files:
   - path: /etc/apt/apt.conf.d/02apt-cacher
     content: |
-      Acquire::http { Proxy "http://192.168.118.1:3142"; };
+      Acquire::http { Proxy "http://10.20.30.1:3142"; };
   - path: /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
     content: |
       network: {config: disabled}

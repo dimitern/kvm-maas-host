@@ -1,10 +1,10 @@
 #cloud-config
 
-fdqn: maas20.home
-hostname: maas20.home
-local-hostname: maas20
+fdqn: vmtest.home
+hostname: vmtest.home
+local-hostname: vmtest
 
-manage_etc_hosts: fqdn
+manage_etc_hosts: true
 
 growpart:
   mode: auto

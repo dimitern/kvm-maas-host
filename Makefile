@@ -2,8 +2,8 @@
 
 .PHONY: all
 
-NAME ?= maas20
-NET ?= maas20-net
+NAME ?= vmtest
+NET_NAME ?= vmtest-net
 DS := $(NAME).iso
 
 ifdef MAAS_HOST_DOMAIN_NAME
@@ -36,16 +36,16 @@ clean:
 	$(RM) $(DS) user-data
 
 redo-net: remove-net
-	virsh net-define $(NET).xml
-	virsh net-autostart $(NET)
-	virsh net-start $(NET)
+	virsh net-define net.xml
+	virsh net-autostart $(NET_NAME)
+	virsh net-start $(NET_NAME)
 
 remove-net:
-	-virsh net-undefine $(NET)
-	-virsh net-destroy $(NET)
+	-virsh net-undefine $(NET_NAME)
+	-virsh net-destroy $(NET_NAME)
 
 create-vm: config
-	./create-vm $(NAME) $(NET)
+	./create-vm $(NAME) $(NET_NAME)
 
 delete-vm:
-	./delete-vm $(NAME) $(NET)
+	./delete-vm $(NAME) $(NET_NAME)
